@@ -4,18 +4,21 @@ import Products from './components/productsComponents/Products.js';
 import CartProducts from './components/cart/CartProducts.js';
 import CartNotification from './components/CartNotification';
 import { Link, Route, Routes } from 'react-router-dom';
+import useFetch from './costumHooks/useFatch';
 
 function App() {
-	const [products, setProducts] = useState([]);
+	// const [products, setProducts] = useState([]);
 	const [cartItems, setCartItems] = useState([]);
-	useEffect(() => {
-		fetch('https://fakestoreapi.com/products')
-			.then((res) => res.json())
-			.then((data) => {
-				// console.log(data);
-				setProducts(data);
-			});
-	}, []);
+	const products = useFetch('https://fakestoreapi.com/products');
+
+	// useEffect(() => {
+	// 	fetch('https://fakestoreapi.com/products')
+	// 		.then((res) => res.json())
+	// 		.then((data) => {
+	// 			// console.log(data);
+	// 			setProducts(data);
+	// 		});
+	// }, []);
 
 	const handleAddToCartItems = (product) => {
 		const newProduct = { ...product };
@@ -70,7 +73,16 @@ function App() {
 			</nav>
 			<div className='App'>
 				<Routes>
-					<Route path='/' element={<Products items={products} handleAddToCartItems={handleAddToCartItems} />} />
+					<Route
+						path='/'
+						element={
+							!products ? (
+								<h1>loading...</h1>
+							) : (
+								<Products items={products} handleAddToCartItems={handleAddToCartItems} />
+							)
+						}
+					/>
 					<Route
 						path='/Cart'
 						element={
