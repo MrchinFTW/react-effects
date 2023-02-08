@@ -5,20 +5,12 @@ import CartProducts from './components/cart/CartProducts.js';
 import CartNotification from './components/CartNotification';
 import { Link, Route, Routes } from 'react-router-dom';
 import useFetch from './costumHooks/useFatch';
+import SelectCategory from './components/categoryComponents/SelectCategory';
 
 function App() {
-	// const [products, setProducts] = useState([]);
 	const [cartItems, setCartItems] = useState([]);
+	// const [] //url state??
 	const products = useFetch('https://fakestoreapi.com/products');
-
-	// useEffect(() => {
-	// 	fetch('https://fakestoreapi.com/products')
-	// 		.then((res) => res.json())
-	// 		.then((data) => {
-	// 			// console.log(data);
-	// 			setProducts(data);
-	// 		});
-	// }, []);
 
 	const handleAddToCartItems = (product) => {
 		const newProduct = { ...product };
@@ -68,6 +60,9 @@ function App() {
 					<li>
 						<Link to={'/Cart'}>Cart</Link>
 						<CartNotification items={cartItems} />
+					</li>
+					<li>
+						<SelectCategory />
 					</li>
 				</ul>
 			</nav>
