@@ -50,14 +50,31 @@ body {
 }
 
 .productContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: space-around;
 	width: 28%;
 	margin: 20px;
 	border: solid black 2px;
+	transition-property: box-shadow, background-color;
+	transition-duration: 500ms;
+	box-shadow: 10px 5px 5px grey;
 	border-radius: 10px;
+	background-color: rgb(243, 222, 176);
+}
+
+.productContainer:hover {
+	transition-property: box-shadow, background-color;
+	transition-duration: 500ms;
+	box-shadow: 10px 5px 5px rgb(32, 32, 32);
+	background-color: rgb(241, 211, 146);
 }
 
 .itemImage {
 	height: 90px;
+	border-radius: 10px;
 }
 
 nav {
@@ -90,9 +107,19 @@ nav a:hover {
 
 .cartNotification {
 	background-color: red;
+	padding: 2px;
 	color: white;
 	position: absolute;
 	top: 17px;
 	left: 235px;
 	border-radius: 30px;
+}
+
+.cartItemTitle {
+	padding: 0 20px;
+}
+
+.cartItem {
+	margin: 10px 0;
+	border: 2px solid rgb(245, 201, 82);
 }

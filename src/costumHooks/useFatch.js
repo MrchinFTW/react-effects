@@ -1,23 +1,13 @@
 import { useEffect, useState } from 'react';
-function fullUrl(urlRecived, urlOption){
-		if(urlOption){
-			return (`${urlRecived}/${urlOption}`)
-		}
-		return (`${urlRecived}`)
-}
+
 const useFetch = (urlRecived, urlOption) => {
-	const [url,setUrl] = useState(null)
-	setUrl(fullUrl(urlRecived, urlOption))
-
-
-	const [answer, setAnswer] = useState(null);
+	const [data, setData] = useState(null);
 	useEffect(() => {
-		fetch(`${url}`)
+		fetch(urlRecived)
 			.then((res) => res.json())
-			.then((data) => setAnswer(data))
-			.catch((error) => console.warn(`an error has accurd: ${error}`));
-	}, [url]);
-	return answer;
+			.then((data) => setData(data));
+	}, [urlRecived]);
+	return data;
 };
 
 export default useFetch;

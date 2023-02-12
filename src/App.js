@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import Products from './components/productsComponents/Products.js';
 import CartProducts from './components/cart/CartProducts.js';
@@ -9,8 +9,8 @@ import SelectCategory from './components/categoryComponents/SelectCategory';
 
 function App() {
 	const [cartItems, setCartItems] = useState([]);
-	// const [] //url state??
-	const products = useFetch('https://fakestoreapi.com/products');
+	const [url, setUrl] = useState('https://fakestoreapi.com/products');
+	const products = useFetch(url);
 
 	const handleAddToCartItems = (product) => {
 		const newProduct = { ...product };
@@ -54,7 +54,6 @@ function App() {
 			<nav>
 				<ul>
 					<li>
-						<a href=''></a>
 						<Link to={'/'}>Products</Link>
 					</li>
 					<li>
@@ -62,8 +61,9 @@ function App() {
 						<CartNotification items={cartItems} />
 					</li>
 					<li>
-						<SelectCategory />
+						<SelectCategory setUrl={setUrl} productUrl={'https://fakestoreapi.com/products/category'} />
 					</li>
+					<li></li>
 				</ul>
 			</nav>
 			<div className='App'>
